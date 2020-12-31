@@ -7,7 +7,8 @@ typedef struct QU
 }Qu;
 void initQu(Qu *qu_q)
  {
-     qu_q->data = (int *)malloc(sizeof(int)*10);
+     qu_q->data = (int *)malloc(sizeof(int)*7);
+     
      if(qu_q->data != NULL)
      {
         qu_q->front = qu_q->rear = 0;
@@ -15,10 +16,14 @@ void initQu(Qu *qu_q)
  }
 void inqu(Qu *qu_q,int value)
 {
-    if(((qu_q->rear+1)%10)!=qu_q->front)
+    if(((qu_q->rear+1)%7)!=qu_q->front)
     {
         qu_q->data[qu_q->rear]=value;
-        qu_q->rear=(qu_q->rear+1)%10;
+        qu_q->rear=(qu_q->rear+1)%7;
+    }
+    else 
+    {
+        printf("Full\n");
     }
 }
 void outqu(Qu *qu_q,int *value)
@@ -26,7 +31,7 @@ void outqu(Qu *qu_q,int *value)
     if(qu_q->rear!=qu_q->front)
     {
         *value=qu_q->data[qu_q->front];
-        qu_q->front=( qu_q->front+1)%10;
+        qu_q->front=( qu_q->front+1)%7;
     }
 }
 void print(Qu *qu_q)
@@ -34,8 +39,8 @@ void print(Qu *qu_q)
     int a=qu_q->front;
     while(a!=qu_q->rear)
     {
-        printf("%d \n",qu_q->data[a]);
-        a=(a+1)%10;
+        printf("%d: %d \n",a,qu_q->data[a]);
+        a=(a+1)%7;
     }
 }
 int main()
@@ -58,6 +63,8 @@ int main()
     printf("第二次 \n");
     print(&a);
     inqu(&a,99);
+    inqu(&a,100);
+    inqu(&a,95);
     printf("第三次 \n");
     print(&a);
     return 0;
