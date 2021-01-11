@@ -52,6 +52,9 @@ void mode_rwtest()
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("CLKS(changed): %x\n\n",shownum(Xil_In32(addr),0,0));
 
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
+
 }
 void intrpt_en_rwtest()
 {
@@ -148,6 +151,9 @@ void intrpt_en_rwtest()
 	PSU_Mask_Write(addr, 0x4U, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RTRIG(changed): %x\n\n",shownum(Xil_In32(addr),0,0));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 
 }
 
@@ -246,5 +252,8 @@ void intrpt_dis_rwtest()
 	PSU_Mask_Write(addr, 0x4U, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RTRIG(changed): %x\n\n",shownum(Xil_In32(addr),0,0));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 

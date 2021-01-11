@@ -52,6 +52,8 @@ void control_rwtest()
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RXRES value(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,0));
 
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void bdiv_rwtest()
@@ -71,6 +73,9 @@ void bdiv_rwtest()
 	PSU_Mask_Write(addr, 0xFFU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,7));
 	printf("BDIV(changed): %x\n\n",shownum(Xil_In32(addr),0,7));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void byte_status_rwtest()
@@ -90,6 +95,9 @@ void byte_status_rwtest()
 	PSU_Mask_Write(addr, 0xFFFU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,11));
 	printf("byte_status(changed): %x\n\n",shownum(Xil_In32(addr),0,11));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 
 }
 
@@ -111,5 +119,8 @@ void TX_RX_FIFO_test()
 	PSU_Mask_Write(addr, 0xFFU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,7));
 	printf("FIFO(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,7));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 
 }

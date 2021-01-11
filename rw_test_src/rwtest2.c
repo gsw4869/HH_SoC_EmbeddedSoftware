@@ -102,6 +102,9 @@ void Chnl_int_sts_rwtest()
 	PSU_Mask_Write(addr, 0x1U, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RTRIG(changed): %x\n\n",shownum(Xil_In32(addr),0,0));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void Rcvr_timeout_rwtest()
@@ -122,6 +125,9 @@ void Rcvr_timeout_rwtest()
 	printf("set 0x%x\n",shownum(~(r1),0,7));
 	printf("RTO(changed): %x\n\n",shownum(Xil_In32(addr),0,7));
 
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
+
 }
 
 void Rcvr_FIFO_trigger_level_rwtest()
@@ -141,4 +147,7 @@ void Rcvr_FIFO_trigger_level_rwtest()
 	PSU_Mask_Write(addr, 0x3FU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,5));
 	printf("RTRIG(changed): %x\n\n",shownum(Xil_In32(addr),0,5));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }

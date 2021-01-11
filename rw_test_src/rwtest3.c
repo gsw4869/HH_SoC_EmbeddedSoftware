@@ -76,6 +76,9 @@ void Chan_sts_test()
 	PSU_Mask_Write(addr, 0x1U, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RTRIG(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,0));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void Intrpt_mask_test()
@@ -173,6 +176,9 @@ void Intrpt_mask_test()
 	PSU_Mask_Write(addr, 0x1U, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,0));
 	printf("RTRIG(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,0));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void Baud_rate_gen_test()
@@ -192,6 +198,9 @@ void Baud_rate_gen_test()
 	PSU_Mask_Write(addr, 0x0000FFFFU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,15));
 	printf("Reserved value(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,15));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
 
 void Tx_FIFO_trigger_test()
@@ -211,4 +220,7 @@ void Tx_FIFO_trigger_test()
 	PSU_Mask_Write(addr, 0x3FU, ~(r1));
 	printf("set 0x%x\n",shownum(~(r1),0,5));
 	printf("TTRIG(changed): 0x%x\n\n",shownum(Xil_In32(addr),0,5));
+
+	PSU_Mask_Write(addr,0xFFFFFFFFU,r1);
+
 }
