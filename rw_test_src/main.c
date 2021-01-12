@@ -10,28 +10,57 @@
 
 int main()
 {
-//	unsigned int a[14];
-//	reset_all(a);
-//    //init_platform();
-//    print_reset(a);
-//    rwtest_all();
+//	init_platform();
+
+
+	char a[100];
+	char b[100];
+	int level=-1;
+	int status;
+	int fail_count=0;
+
+	while(level<0|level>63)
+	{
+		printf("input tx fifo trigger level\nTrigger set when transmitter FIFO fills to TTRIG bytes\n");
+		scanf("%d",&level);
+	}
+	for(int i=1;i<70;i++)
+	{
+		status=tx_fifo_trigger_level_test(XPAR_XUARTPS_1_DEVICE_ID,a,b,i,level);
+		printf("%s\n%s\n",a,b);
+		if(!status)
+		{
+			printf("Success\n\n");
+		}
+		else
+		{
+			fail_count++;
+			printf("Fail\n\n");
+		}
+		usleep(100000);
+	}
+	if(fail_count)
+	{
+		printf("Fail %d times\n",fail_count);
+	}
+	else
+	{
+		printf("All tests passed\n");
+	}
+
+
+//
+//	int baud_rate;
+//	int BDIV;
+//	while(1)
+//	{
+//		printf("Set Baud rate\n");
+//		scanf("%d",&baud_rate);
+//		printf("Set BDIV\n");
+//		scanf("%d",&BDIV);
+//		baud_test_combined(XPAR_XUARTPS_1_DEVICE_ID,baud_rate,BDIV);
+//	}
+
 //    cleanup_platform();
-	init_platform();
-
-	printf("normal test\n");
-	sleep(1);
-	normal_test();
-	printf("automatic echo test\n");
-	sleep(1);
-	automatic_echo_test();
-	printf("local loop test\n");
-	sleep(1);
-	local_loop_test();
-	printf("remote loop test\n");
-	sleep(1);
-	remote_loop_test();
-	printf("End of test\n");
-
-    cleanup_platform();
     return 0;
 }

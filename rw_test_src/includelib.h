@@ -4,3 +4,5 @@
 #include "rwtest3.h"
 #include "rwtest4.h"
 #include "mode_switch.h"
+#include "regaddr.h"
+
