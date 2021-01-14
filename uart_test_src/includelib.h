@@ -5,4 +5,4 @@
 #include "rwtest4.h"
 #include "mode_switch.h"
 #include "regaddr.h"
-
+#include "control_test.h"

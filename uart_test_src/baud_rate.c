@@ -241,6 +241,7 @@ void baud_test_combined(u16 DeviceId,int baud_rate,int BDIV)
 	sleep(1);
 	PSU_Mask_Write(Baud_rate_gen_1, 0x0000FFFFU,CD);
 	PSU_Mask_Write(Baud_rate_divider_addr_1, 0xFFU, BDIV);
+
 	for(i=0;i<=1000;i++)
 	{
 		SentCount = XUartPs_Send(&Uart_PS, SendBuffer, TEST_BUFFER_SIZE);
@@ -251,9 +252,11 @@ void baud_test_combined(u16 DeviceId,int baud_rate,int BDIV)
 		while (XUartPs_IsSending(&Uart_PS)) {
 			LoopCount++;
 		}
-
 	}
+
+
 	PSU_Mask_Write(Baud_rate_gen_1, 0x0000FFFFU,0x7c);
 	PSU_Mask_Write(Baud_rate_divider_addr_1, 0xFFU, 0x6);
+	printf("\n");
 	sleep(1);
 }

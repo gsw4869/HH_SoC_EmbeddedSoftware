@@ -39,6 +39,7 @@ int tx_fifo_trigger_level_test(u16 DeviceId,char* a,char* b,int i,int level)
 	}
 	//PSU_Mask_Write(intrpt_dis_addr_1,0x400,0x400);//disable interrupt
 	PSU_Mask_Write(Tx_FIFO_trigger_1,0x3F,level);//set trigger level
+	PSU_Mask_Write(0xFF010014,0xFFFFFFFF,0xFFFFFFFF);
 
 	sprintf(a,"\ni:%d\nBefore : Channel sts TTRIG : %d  Tx_FIFO_trigger_level : %d chan_int : %x",i,(Xil_In32(Chan_sts_1)&0x2000)>>13,Xil_In32(Tx_FIFO_trigger_1),Xil_In32(0xFF010014));
 
@@ -48,7 +49,7 @@ int tx_fifo_trigger_level_test(u16 DeviceId,char* a,char* b,int i,int level)
 	{
 		XUartPs_WriteReg(0xFF010000,XUARTPS_FIFO_OFFSET,'*');
 	}
-
+	sleep(1);
 	sprintf(b,"After : Channel sts TTRIG : %d  Tx_FIFO_trigger_level : %d chan_int : %x",(Xil_In32(Chan_sts_1)&0x2000)>>13,Xil_In32(Tx_FIFO_trigger_1),Xil_In32(0xFF010014));
 
 	if((i>=level&&!(Xil_In32(Chan_sts_1)&0x2000))||(i<level&&(Xil_In32(Chan_sts_1)&0x2000)))
@@ -56,10 +57,15 @@ int tx_fifo_trigger_level_test(u16 DeviceId,char* a,char* b,int i,int level)
 		XUartPs_SetOperMode(&Uart_PS, XUARTPS_OPER_MODE_NORMAL);
 		return XST_FAILURE;
 	}
-	PSU_Mask_Write(0xFF010014,0xFFFFFFFF,0xFFFFFFFF);
 
 	XUartPs_SetOperMode(&Uart_PS, XUARTPS_OPER_MODE_NORMAL);
 
 
 	return XST_SUCCESS;
+}
+void test_fifo()
+{
+
+	PSU_Mask_Write(0xFF010004,0x3000,0x3000);
+	XUartPs_WriteReg(0xFF010000,XUARTPS_FIFO_OFFSET,0x34353637);
 }
